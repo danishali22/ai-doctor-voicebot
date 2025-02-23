@@ -47,7 +47,7 @@ audio_filepath="patient_voice_test.mp3"
 import os
 from groq import Groq
 
-GROQ_API_KEY = os.getenv("GROP_API_KEY") or "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"
+GROQ_API_KEY = os.getenv("GROP_API_KEY")
 print("groq", GROQ_API_KEY)
 client = Groq(api_key=GROQ_API_KEY)
 # Speech to Text Model 
