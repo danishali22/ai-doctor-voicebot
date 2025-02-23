@@ -2,3 +2,5 @@ groq
 speechrecognition
 pydub
 pyaudio
+gtts
+elevenlabs
