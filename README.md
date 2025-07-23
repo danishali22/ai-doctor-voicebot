@@ -1,154 +1,105 @@
-# Project Setup Guide
+# 🧠 AI Medical Voicebot
 
-This guide provides step-by-step instructions to set up your project environment, including the installation of FFmpeg and PortAudio across macOS, Linux, and Windows, as well as setting up a Python virtual environment using Pipenv, pip, or conda.
-
-## Table of Contents
-
-1. [Installing FFmpeg and PortAudio](#installing-ffmpeg-and-portaudio)
-   - [macOS](#macos)
-   - [Linux](#linux)
-   - [Windows](#windows)
-2. [Setting Up a Python Virtual Environment](#setting-up-a-python-virtual-environment)
-   - [Using Pipenv](#using-pipenv)
-   - [Using pip and venv](#using-pip-and-venv)
-   - [Using Conda](#using-conda)
-3. [Running the application](#project-phases-and-python-commands)
-
-## Installing FFmpeg and PortAudio
-
-### macOS
-
-1. **Install Homebrew** (if not already installed):
-
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-2. **Install FFmpeg and PortAudio:**
-
-   ```bash
-   brew install ffmpeg portaudio
-   ```
-
-
-### Linux
-For Debian-based distributions (e.g., Ubuntu):
-
-1. **Update the package list**
-
-```
-sudo apt update
-```
-
-2. **Install FFmpeg and PortAudio:**
-```
-sudo apt install ffmpeg portaudio19-dev
-```
-
-### Windows
-
-#### Download FFmpeg:
-1. Visit the official FFmpeg download page: [FFmpeg Downloads](https://ffmpeg.org/download.html)
-2. Navigate to the Windows builds section and download the latest static build.
-
-#### Extract and Set Up FFmpeg:
-1. Extract the downloaded ZIP file to a folder (e.g., `C:\ffmpeg`).
-2. Add the `bin` directory to your system's PATH:
-   - Search for "Environment Variables" in the Start menu.
-   - Click on "Edit the system environment variables."
-   - In the System Properties window, click on "Environment Variables."
-   - Under "System variables," select the "Path" variable and click "Edit."
-   - Click "New" and add the path to the `bin` directory (e.g., `C:\ffmpeg\bin`).
-   - Click "OK" to apply the changes.
-
-#### Install PortAudio:
-1. Download the PortAudio binaries from the official website: [PortAudio Downloads](http://www.portaudio.com/download.html)
-2. Follow the installation instructions provided on the website.
+An advanced multimodal AI-powered medical voicebot that combines voice, image, and text inputs to generate real-time, professional medical insights.
 
 ---
 
-## Setting Up a Python Virtual Environment
+## 📌 Features
 
-### Using Pipenv
-1. **Install Pipenv (if not already installed):**  
-```
-pip install pipenv
-```
+* 🎙️ **Voice Input & Transcription**: Converts speech into text using **Whisper-large-v3** via **GROQ API**
+* 🖼️ **Image Analysis**: Detects medical conditions using **LLaMA-3.2-90B Vision model**
+* 💬 **AI Medical Response**: Generates accurate, professional feedback in 2–3 sentences
+* 🔊 **Text-to-Speech (TTS)**: Converts generated text into audio using **ElevenLabs** and **gTTS**
+* 🌐 **Multimodal Interface**: Supports voice, image, and text inputs in one seamless UI
+* 🖥️ **Gradio UI**: Simple and interactive interface for users
 
-2. **Install Dependencies with Pipenv:** 
+---
+
+## 🛠️ Tech Stack
+
+| Category             | Tools & Services            |
+| -------------------- | --------------------------- |
+| Programming Language | Python                      |
+| UI Framework         | Gradio                      |
+| Speech-to-Text       | GROQ API (Whisper-large-v3) |
+| Image Analysis       | LLaMA-3.2-90B Vision Model  |
+| Text-to-Speech (TTS) | ElevenLabs, gTTS            |
+| Environment Handling | python-dotenv               |
+
+---
+
+## 📁 Project Structure
 
 ```
-pipenv install
-```
-
-3. **Activate the Virtual Environment:** 
-
-```
-pipenv shell
+ai-doctor-voicebot/
+├── app.py                 # Main Gradio interface
+├── whisper_utils.py       # Voice transcription logic
+├── vision_utils.py        # Image analysis with LLaMA
+├── tts_utils.py           # Text-to-Speech functions
+├── requirements.txt       # Python dependencies
+├── .env.example           # Example environment variables
+└── README.md              # Project documentation
 ```
 
 ---
 
-### Using `pip` and `venv`
-#### Create a Virtual Environment:
-```
-python -m venv venv
+## 🔧 Setup Instructions
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/danishali22/ai-doctor-voicebot.git
+cd ai-doctor-voicebot
 ```
 
-#### Activate the Virtual Environment:
-**macOS/Linux:**
-```
-source venv/bin/activate
-```
+2. **Install Dependencies**
 
-**Windows:**
-```
-venv\Scripts\activate
-```
-
-#### Install Dependencies:
-```
+```bash
 pip install -r requirements.txt
 ```
 
+3. **Configure Environment Variables**
+
+```bash
+cp .env.example .env
+# Fill in your GROQ API key, ElevenLabs key, etc.
+```
+
+4. **Run the App**
+
+```bash
+python app.py
+```
+
 ---
 
-### Using Conda
-#### Create a Conda Environment:
-```
-conda create --name myenv python=3.11
-```
+## 🤖 How It Works
 
-#### Activate the Conda Environment:
-```
-conda activate myenv
-```
+1. User speaks or uploads a medical image.
+2. Voice is transcribed using Whisper via GROQ API.
+3. Image is analyzed via LLaMA-3.2-90B Vision model.
+4. A short, concise medical insight is generated.
+5. Response is read aloud using TTS.
 
-#### Install Dependencies:
-```
-pip install -r requirements.txt
-```
+---
 
+## 📚 What I Learned
 
-# Project Phases and Python Commands
+* Efficient use of **multimodal AI** (text + vision + audio)
+* Integration of **GROQ Whisper** and **LLaMA vision models**
+* Working with **real-time audio and speech generation APIs**
+* Building clean, user-friendly Gradio apps
 
-## Phase 1: Brain of the doctor
-```
-python brain_of_the_doctor.py
-```
+---
 
-## Phase 2: Voice of the patient
-```
-python voice_of_the_patient.py
-```
+## 🙌 Feedback
 
-## Phase 3: Voice of the doctor
-```
-python voice_of_the_doctor.py
-```
+If you find this helpful or want to collaborate, feel free to open an issue or connect!
 
-## Phase 4: Setup Gradio UI
-```
-python gradio_app.py
-```
+---
 
+**GitHub:** [danishali22](https://github.com/danishali22)
+
+---
+
+> ⚠️ This project is for educational/demo purposes. Not intended for real-world diagnosis or treatment.
